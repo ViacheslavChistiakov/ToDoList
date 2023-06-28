@@ -25,6 +25,15 @@ function App() {
     setTasks(newTasks);
   }
 
+
+  function changeStatus(taskId: string, isDone: boolean) {
+   let task =  tasks.find(t =>  t.id === taskId)
+   if(task){
+    task.isDone = !task.isDone
+   }
+   setTasks( [ ...tasks ])
+
+  }
  
 
   function removeTask(id: string) {
@@ -52,6 +61,8 @@ function App() {
                   removeTask={removeTask}
                   changeFilter={changeFilter}
                   addTask={addTask}
+                  changeTaskStatus={changeStatus}
+                  filter={filter}
              
                   />
 
