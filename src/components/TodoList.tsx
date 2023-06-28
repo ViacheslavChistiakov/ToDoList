@@ -30,10 +30,12 @@ export function TodoList(props: PropsType) {
 
   const onKeyPressHundler = (e: KeyboardEvent<HTMLInputElement>) => {
     setError(null);
-    if (e.charCode === 13) {
-      props.addTask(title);
+    if (e.charCode === 13 && title.trim() !== "" ) {
+      props.addTask(title.trim());
         setTitle("")
-    } 
+    } else {
+      setError("Title is required")
+    }
   }
 
   const addTask = () => {
