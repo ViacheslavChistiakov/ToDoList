@@ -3,6 +3,7 @@ import './App.css';
 import TodoList, { TaskType } from './components/TodoList';
 import { v1 } from 'uuid';
 import AddItemForm from './components/AddItemForm';
+import { title } from 'process';
 
 export type FillterValuesType = 'all' | 'completed' | 'active'
 type toDoListType = {
@@ -72,6 +73,14 @@ let removeToDoList = (toDoListId: string) => {
   setTasks({...tasksObj})
 }
 
+function changeToDoListTitle(id: string, newTitle: string) {
+  const toDoList = toDoLists.find(tl => tl.id === id)
+  if (toDoList) {
+    toDoList.title = newTitle;
+    setToDoList([...toDoLists])
+  }
+}
+
 
  let [tasksObj, setTasks] = useState<TasksStateType>({
     [toDoList1]: [
@@ -108,6 +117,19 @@ let removeToDoList = (toDoListId: string) => {
           if (tl.filter === 'active'){
             tasksForTodoList = tasksForTodoList.filter(t => t.isDone === false);
           }
+
+          function changeTaskTitle(taskId: string, newTitle: string, toDoListId: string) {
+            let tasks = tasksObj[toDoListId]
+            let task =  tasks.find(t =>  t.id === taskId)
+            if(task){
+             task.title = newTitle
+             setTasks(  {...tasksObj} )
+            }
+           
+         
+           }
+
+
           return <TodoList
           key={tl.id}
           id={tl.id} 
@@ -117,8 +139,10 @@ let removeToDoList = (toDoListId: string) => {
           changeFilter={changeFilter}
           addTask={addTask}
           changeTaskStatus={changeStatus}
+          changeTaskTitle={changeTaskTitle}
           filter={tl.filter}
           removeToDoList={removeToDoList}
+          changeToDoListTitle={changeToDoListTitle}
      
           />
         })
