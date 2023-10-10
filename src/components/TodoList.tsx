@@ -41,7 +41,7 @@ export function TodoList(props: PropsType) {
   }
 
     return (
-      <div>
+      <div className="firstSector">
         <h3><EditableSpan title={props.title} onChange={changeToDoListTitle}/>
         <button onClick={removeToDoList}>x</button>
         </h3>
@@ -66,7 +66,7 @@ export function TodoList(props: PropsType) {
           })
           }
         </ul>
-        <div>
+        <div className="filter">
           <button className={props.filter === 'all' ? "active-filter" : ""} onClick={onAllClickHundler}>All</button>
           <button className={props.filter === 'active' ? "active-filter" : ""} onClick={onActiveClickHundler}>Active</button>
           <button className={props.filter === 'completed' ? "active-filter" : ""} onClick={onCompletedClickHundler}>Completed</button>

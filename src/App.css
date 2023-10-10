@@ -7,8 +7,33 @@
   margin-right: 58px;
 }
 
+
+
+.firstSector {
+  border: solid 1px;
+  border-radius: 10%;
+  border-width: 100%;
+}
+
+.firstSector > h3 {
+  text-align: center;
+ 
+}
+
+.firstSector > li {
+  text-decoration: none;
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+
+}
+
+
 .error {
   border: red 1px solid;
+
 }
 
 .error-message {
