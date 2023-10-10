@@ -2,6 +2,8 @@ import React, { ChangeEvent, ChangeEventHandler, KeyboardEvent, useState } from 
 import { FillterValuesType } from "../App";
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
+import { Button, IconButton } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 
 
 export type TaskType = {
@@ -43,7 +45,9 @@ export function TodoList(props: PropsType) {
     return (
       <div className="firstSector">
         <h3><EditableSpan title={props.title} onChange={changeToDoListTitle}/>
-        <button onClick={removeToDoList}>x</button>
+        <IconButton  onClick={removeToDoList}>
+            <Delete />
+    </IconButton>
         </h3>
            <AddItemForm  addItem={addTask} />
         <ul>
@@ -61,15 +65,17 @@ export function TodoList(props: PropsType) {
                     onChange={onChangeStatusHundler} 
                     checked={t.isDone} />
               <EditableSpan  title={t.title} onChange={onChangeTitleHundler}/>
-              <button onClick={onRemoveHundler}>x</button>
+              <IconButton  onClick={onRemoveHundler}>
+                  <Delete />
+          </IconButton>
               </li>
           })
           }
         </ul>
         <div className="filter">
-          <button className={props.filter === 'all' ? "active-filter" : ""} onClick={onAllClickHundler}>All</button>
-          <button className={props.filter === 'active' ? "active-filter" : ""} onClick={onActiveClickHundler}>Active</button>
-          <button className={props.filter === 'completed' ? "active-filter" : ""} onClick={onCompletedClickHundler}>Completed</button>
+          <Button variant={props.filter === 'all' ? "contained" : "text"}  onClick={onAllClickHundler}>All</Button>
+          <Button color={"primary"} variant={props.filter === 'active' ? "contained" : "text"} onClick={onActiveClickHundler}>Active</Button>
+          <Button color={"secondary"} variant={props.filter === 'completed' ? "contained" : "text"} onClick={onCompletedClickHundler}>Completed</Button>
         </div>
       </div>
   
