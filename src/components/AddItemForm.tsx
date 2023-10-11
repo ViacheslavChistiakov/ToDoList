@@ -1,5 +1,6 @@
-import { Button, TextField } from "@mui/material";
+import { Button, IconButton, TextField } from "@mui/material";
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 type AddItemFormProps = {
     addItem: (title: string) => void
@@ -35,7 +36,10 @@ type AddItemFormProps = {
             error={!!error}
             helperText={error}
             />
-          <Button onClick={addTask} variant={"contained"} color={"primary"}>+</Button>
+          <IconButton onClick={addTask}  color={"primary"}>
+          <AddCircleOutlineIcon />
+          </IconButton>
+       
     </div>
  } 
 

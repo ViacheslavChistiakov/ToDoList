@@ -2,8 +2,8 @@ import React, { ChangeEvent, ChangeEventHandler, KeyboardEvent, useState } from 
 import { FillterValuesType } from "../App";
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
-import { Button, IconButton } from "@mui/material";
-import { Delete } from "@mui/icons-material";
+import { Button, Checkbox, IconButton } from "@mui/material";
+import { CheckBox, Delete } from "@mui/icons-material";
 
 
 export type TaskType = {
@@ -50,7 +50,7 @@ export function TodoList(props: PropsType) {
     </IconButton>
         </h3>
            <AddItemForm  addItem={addTask} />
-        <ul>
+        <div>
           {
             props.tasks.map(t => { 
               const onRemoveHundler =  () => { props.removeTask(t.id, props.id )} 
@@ -60,18 +60,18 @@ export function TodoList(props: PropsType) {
               const onChangeTitleHundler = (newValue: string) => { 
                 props.changeTaskTitle(t.id, newValue, props.id ) 
               }
-              return <li className={t.isDone ? "is-done" : ""} key={t.id}>
-                <input type="checkbox"
+              return <div className={t.isDone ? "is-done" : ""} key={t.id}>
+                <Checkbox
                     onChange={onChangeStatusHundler} 
                     checked={t.isDone} />
               <EditableSpan  title={t.title} onChange={onChangeTitleHundler}/>
               <IconButton  onClick={onRemoveHundler}>
                   <Delete />
           </IconButton>
-              </li>
+              </div>
           })
           }
-        </ul>
+        </div>
         <div className="filter">
           <Button variant={props.filter === 'all' ? "contained" : "text"}  onClick={onAllClickHundler}>All</Button>
           <Button color={"primary"} variant={props.filter === 'active' ? "contained" : "text"} onClick={onActiveClickHundler}>Active</Button>
