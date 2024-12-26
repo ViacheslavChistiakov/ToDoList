@@ -3,6 +3,6 @@
 
 * TypeScript
 * Material-UI
-* Local=Storage
+* Local-Storage
 
 ### You can look my project [right here](https://viacheslavchistiakov.github.io/ToDoList/)
